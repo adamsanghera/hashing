@@ -11,6 +11,9 @@ Furhter, this package will only output hashes, salts, and assets that are encode
 # Terminology
 
 Asset = thing you want to hash.
+
 Salt = random string you combine with a hash, to make it even better.
+
 Challenge = string that you want to check the validity of.
+
 HashedAsset = your asset in a locked box.  To open this box, you need to have a valid challenge and the Salt associated with it.
