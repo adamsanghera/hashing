@@ -9,7 +9,7 @@ import (
 func WithNewSalt(pass string) (string, string) {
 	salt := generateSalt()
 
-	hash := runScrypt(pass, generateSalt())
+	hash := runScrypt(pass, salt)
 
 	return hex.EncodeToString(salt), hex.EncodeToString(hash)
 }
