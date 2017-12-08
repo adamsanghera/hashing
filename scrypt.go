@@ -9,7 +9,7 @@ import (
 func WithNewSalt(pass string) (string, string) {
 	salt := generateSalt()
 
-	hash := runScrypt(pass, salt)
+	hash := runScryptWithSalt(pass, salt)
 
 	return hex.EncodeToString(salt), hex.EncodeToString(hash)
 }
@@ -20,7 +20,7 @@ func WithNewSalt(pass string) (string, string) {
 func WithOldSalt(pass string, encodedSalt string) string {
 	salt := decode(encodedSalt)
 
-	hash := runScrypt(pass, salt)
+	hash := runScryptWithSalt(pass, salt)
 
 	return hex.EncodeToString(hash)
 }
@@ -29,4 +29,11 @@ func WithOldSalt(pass string, encodedSalt string) string {
 //  expects a challenge, encoded salt, encoded hash.
 func IsValidChallenge(challenge string, encodedSalt string, encodedHash string) bool {
 	return WithOldSalt(challenge, encodedSalt) == encodedHash
+}
+
+// WithoutSalt is used to hash strings without salt.
+// This isn't really recommended.
+// If you have the capacity to store salt, you should use WithNewSalt instead.
+func WithoutSalt(pass string) string {
+	return hex.EncodeToString(runScryptWithoutSalt(pass))
 }
