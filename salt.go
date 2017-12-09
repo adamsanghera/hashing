@@ -18,3 +18,15 @@ func generateSalt() []byte {
 	}
 	return salt
 }
+
+// GetSaltSize returns the size of the salt.
+// Useful if you are combining hash and salt in common string.
+func GetSaltSize() int {
+	return pwSaltBytes
+}
+
+// GetHashSize returns the size of the resulting hashed string.
+// Useful if you are combining hash and salt in common string.
+func GetHashSize() int {
+	return pwHashBytes
+}
