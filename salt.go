@@ -22,11 +22,11 @@ func generateSalt() []byte {
 // GetSaltSize returns the size of the salt.
 // Useful if you are combining hash and salt in common string.
 func GetSaltSize() int {
-	return pwSaltBytes
+	return pwSaltBytes * 4
 }
 
 // GetHashSize returns the size of the resulting hashed string.
 // Useful if you are combining hash and salt in common string.
 func GetHashSize() int {
-	return pwHashBytes
+	return pwHashBytes * 4
 }
